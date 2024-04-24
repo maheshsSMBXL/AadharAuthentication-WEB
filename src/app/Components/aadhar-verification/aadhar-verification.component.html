@@ -1,0 +1,44 @@
+<div class="outer-res">
+    <!-- <div class="vedio-clip">
+        <iframe src="https://player.vimeo.com/video/840011485?autoplay=1&amp;loop=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;muted=1&amp;controls=0&amp;api=1&amp;player_id=vvvvimeoVideo-9892202" class="setvimeo" frameborder="0" allow="autoplay;" allowfullscreen="" ; data-ready="true"]></iframe>
+    </div> -->
+</div>
+<div class="glass-box">
+    <div class="content-box">
+        <!-- <div class="progress-view">
+            <div class="progressing1">
+                <p>Adhaar Authentication</p>
+            </div>
+            <div class="progressing2">
+                <p>Face Scan</p>
+            </div>
+            <div class="progressing3">
+                <p>Adhaar Details</p>
+            </div>           
+        </div>         -->
+        <form>            
+            <div *ngIf="getOtp">                
+                <label class="font-adjuster" for="fname">Adhaar Number:</label>
+                <input class="adhaar-box" type="text" id="adhaarn" name="fname" placeholder="Enter Adhaar Number"><br><br>
+                <span class="display-otp">
+                   <button class="primary-btn" type="button" id="mysubmit1" (click)="myfunc()">Get OTP</button>
+                </span>
+            </div>
+            <div *ngIf="submitOtp">                
+                <span class="get-otp" id="get-otp">
+                    <label class="font-adjuster" for="lname">OTP:</label>
+                    <input class="adhaar-box" type="text" id="lname" name="lname" placeholder="Enter OTP"><br><br>
+                    <button class="primary-btn" type="button" id="mysubmit" (click)="scanface()">Submit</button>
+                </span>
+            </div>
+            <div *ngIf="faceScan">
+                <div>
+                    <div class="progress-view"></div>
+                    <h1>Scan face</h1>
+                    <div class="container"></div>
+                    <button class="primary-btn" type="button" id="mynext" onclick="gonext()">Next</button>
+                </div>
+            </div>                      
+        </form>        
+    </div>
+</div>
