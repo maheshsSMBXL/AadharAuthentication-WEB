@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AadharService } from 'src/app/aadhar.service';
 
 @Component({
   selector: 'app-aadhar-verification',
@@ -7,21 +8,49 @@ import { Component } from '@angular/core';
 })
 export class AadharVerificationComponent {
 
+  constructor(
+    private aadharService: AadharService
+  ) {
+  }
+
   getOtp:boolean = true;
   submitOtp:boolean = false;
   //aadharVerification:boolean = true;
   faceScan:boolean = false;
 
-  myfunc()
+  aadharNumber:any;
+  otp:any;
+  transactionId:any;
+
+  async myfunc()
   {
     debugger;
+    await this.aadharService
+          .getOtp({aadhaarId : this.aadharNumber})
+          .subscribe((res) => {
+            if (res) {   
+              this.transactionId = res;           
+            }
+          });
     this.getOtp = false;
     this.submitOtp = true;
     this.faceScan = false;
   }
-  scanface()
-  {  
-    debugger;  
+  aadharPhotoBase64:any;
+  customerName:any;
+
+  async scanface()
+  {
+    debugger;
+    await this.aadharService
+          .submitOtp({aadharOTP : this.otp, transactionId : this.transactionId})
+          .subscribe((res:any) => {
+            if (res) {   
+              //this.aadharPhotoBase64 = res.data.aadhaar_data.photo_base64;
+              this.aadharService.aadharBase64 = res.data.aadhaar_data.photo_base64; 
+              this.customerName = res.data.aadhaar_data.name;         
+            }
+          });
     this.getOtp = false;
     this.submitOtp = false;
     this.faceScan = true;

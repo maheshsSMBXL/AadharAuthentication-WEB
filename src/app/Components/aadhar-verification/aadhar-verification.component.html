@@ -19,7 +19,7 @@
         <form>            
             <div *ngIf="getOtp">                
                 <label class="font-adjuster" for="fname">Adhaar Number:</label>
-                <input class="adhaar-box" type="text" id="adhaarn" name="fname" placeholder="Enter Adhaar Number"><br><br>
+                <input class="adhaar-box" type="text" id="adhaarn" name="fname" placeholder="Enter Adhaar Number" [(ngModel)]="aadharNumber"><br><br>
                 <span class="display-otp">
                    <button class="primary-btn" type="button" id="mysubmit1" (click)="myfunc()">Get OTP</button>
                 </span>
@@ -27,17 +27,19 @@
             <div *ngIf="submitOtp">                
                 <span class="get-otp" id="get-otp">
                     <label class="font-adjuster" for="lname">OTP:</label>
-                    <input class="adhaar-box" type="text" id="lname" name="lname" placeholder="Enter OTP"><br><br>
+                    <input class="adhaar-box" type="text" id="lname" name="lname" placeholder="Enter OTP" [(ngModel)]="otp"><br><br>
                     <button class="primary-btn" type="button" id="mysubmit" (click)="scanface()">Submit</button>
                 </span>
             </div>
             <div *ngIf="faceScan">
-                <div>
+                <label>{{customerName}}</label>
+                <!-- <div>
                     <div class="progress-view"></div>
                     <h1>Scan face</h1>
                     <div class="container"></div>
                     <button class="primary-btn" type="button" id="mynext" onclick="gonext()">Next</button>
-                </div>
+                </div> -->
+                <app-face-recognize></app-face-recognize>
             </div>                      
         </form>        
     </div>

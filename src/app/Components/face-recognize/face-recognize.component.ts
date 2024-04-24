@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
+import { AadharService } from 'src/app/aadhar.service';
 
 @Component({
   selector: 'app-face-recognize',
@@ -12,7 +13,9 @@ export class FaceRecognizeComponent {
   mediaRecorder: any;
   streamVideo!: MediaStream;
 
-  constructor() { }
+  constructor(
+    private aadharService: AadharService
+  ) { }
 
   ngOnInit() {
     this.video = this.videoElement?.nativeElement;
@@ -61,12 +64,19 @@ export class FaceRecognizeComponent {
     this.convertToBase64(imageDataURL);
 
     this.streamVideo = this.video.srcObject as MediaStream;
-    this.streamVideo.getTracks().forEach(track => track.stop());
+    this.streamVideo.getTracks().forEach(track => track.stop());    
   }
 
   convertToBase64(imageDataURL: string) {
     const base64Image = imageDataURL.split('base64,')[1];
     console.log('Base64 Image:', base64Image);
     // Here you can send the base64Image to your server or use it as needed
+
+    this.aadharService
+          .faceMatch({scanBase64 : base64Image, aadhaarBase64 : this.aadharService.aadharBase64})
+          .subscribe((res) => {
+            if (res) {              
+            }
+          });
   }
 }
