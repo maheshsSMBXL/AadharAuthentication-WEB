@@ -40,6 +40,12 @@
                     <button class="primary-btn" type="button" id="mynext" onclick="gonext()">Next</button>
                 </div> -->
                 <app-face-recognize></app-face-recognize>
+            </div>
+            <div *ngIf="aadharService.aadharDetails">                
+                <span class="get-otp" id="get-otp">
+                    <label class="font-adjuster" for="lname">name: {{customerName}}</label>
+                    <label class="font-adjuster" for="lname">gender: {{gender}}</label>
+                </span>
             </div>                      
         </form>        
     </div>

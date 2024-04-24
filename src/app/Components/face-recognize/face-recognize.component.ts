@@ -71,11 +71,14 @@ export class FaceRecognizeComponent {
     const base64Image = imageDataURL.split('base64,')[1];
     console.log('Base64 Image:', base64Image);
     // Here you can send the base64Image to your server or use it as needed
-
+    debugger;
+    this.aadharService.aadharDetails = true;
     this.aadharService
           .faceMatch({scanBase64 : base64Image, aadhaarBase64 : this.aadharService.aadharBase64})
-          .subscribe((res) => {
-            if (res) {              
+          .subscribe((res:any) => {
+            if (res) {
+              debugger;    
+              this.aadharService.aadharDetails = true;          
             }
           });
   }

@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 export class AadharService {
 
   aadharBase64:any;
+  aadharDetails:boolean = false;
 
   constructor(private http: HttpClient) { }
   

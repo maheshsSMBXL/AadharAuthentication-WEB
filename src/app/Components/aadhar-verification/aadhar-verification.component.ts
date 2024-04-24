@@ -9,7 +9,7 @@ import { AadharService } from 'src/app/aadhar.service';
 export class AadharVerificationComponent {
 
   constructor(
-    private aadharService: AadharService
+    public aadharService: AadharService
   ) {
   }
 
@@ -17,6 +17,7 @@ export class AadharVerificationComponent {
   submitOtp:boolean = false;
   //aadharVerification:boolean = true;
   faceScan:boolean = false;
+  aadharDetails:boolean = false;
 
   aadharNumber:any;
   otp:any;
@@ -35,9 +36,12 @@ export class AadharVerificationComponent {
     this.getOtp = false;
     this.submitOtp = true;
     this.faceScan = false;
+    this.aadharService.aadharDetails = false;
+    //this.aadharDetails = this.aadharService.aadharDetails;
   }
   aadharPhotoBase64:any;
   customerName:any;
+  gender:any;
 
   async scanface()
   {
@@ -48,11 +52,14 @@ export class AadharVerificationComponent {
             if (res) {   
               //this.aadharPhotoBase64 = res.data.aadhaar_data.photo_base64;
               this.aadharService.aadharBase64 = res.data.aadhaar_data.photo_base64; 
-              this.customerName = res.data.aadhaar_data.name;         
+              this.customerName = res.data.aadhaar_data.name;   
+              this.gender = res.data.aadhaar_data.gender;      
             }
           });
     this.getOtp = false;
     this.submitOtp = false;
     this.faceScan = true;
+    this.aadharService.aadharDetails = false;
+    //this.aadharDetails = this.aadharService.aadharDetails;
   }
 }
