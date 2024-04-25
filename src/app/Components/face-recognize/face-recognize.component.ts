@@ -61,24 +61,23 @@ export class FaceRecognizeComponent {
     const context = canvas.getContext('2d');
     context!.drawImage(this.video, 0, 0, canvas.width, canvas.height);
     const imageDataURL = canvas.toDataURL('image/jpeg');
-    this.convertToBase64(imageDataURL);
-
-    this.streamVideo = this.video.srcObject as MediaStream;
-    this.streamVideo.getTracks().forEach(track => track.stop());    
+    this.convertToBase64(imageDataURL);       
   }
 
-  convertToBase64(imageDataURL: string) {
+  async convertToBase64(imageDataURL: string) {
     const base64Image = imageDataURL.split('base64,')[1];
     console.log('Base64 Image:', base64Image);
     // Here you can send the base64Image to your server or use it as needed
     debugger;
-    this.aadharService.aadharDetails = true;
-    this.aadharService
+    //this.aadharService.aadharDetails = true;
+    await this.aadharService
           .faceMatch({scanBase64 : base64Image, aadhaarBase64 : this.aadharService.aadharBase64})
           .subscribe((res:any) => {
             if (res) {
               debugger;    
-              this.aadharService.aadharDetails = true;          
+              this.aadharService.aadharDetails = true; 
+              this.streamVideo = this.video.srcObject as MediaStream;
+              this.streamVideo.getTracks().forEach(track => track.stop());          
             }
           });
   }

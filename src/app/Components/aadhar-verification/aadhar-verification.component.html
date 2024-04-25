@@ -41,11 +41,18 @@
                 </div> -->
                 <app-face-recognize></app-face-recognize>
             </div>
-            <div *ngIf="aadharService.aadharDetails">                
-                <span class="get-otp" id="get-otp">
+            <div *ngIf="aadharService.aadharDetails">  
+                <div class="adhaar-detail">                    
+                    <h1>Adhaar Details</h1>
+                    <h3>Name: {{customerName}}</h3><br>
+                    <h3>Gender: {{gender}}</h3><br>
+                    <h3>DOB: {{customerAadharDetails.date_of_birth}}</h3><br>                    
+                    <h3>Address: {{customerAadharDetails.house}}, {{customerAadharDetails.landmark}}</h3><br>
+                </div>              
+                <!-- <span class="get-otp" id="get-otp">
                     <label class="font-adjuster" for="lname">name: {{customerName}}</label>
                     <label class="font-adjuster" for="lname">gender: {{gender}}</label>
-                </span>
+                </span> -->
             </div>                      
         </form>        
     </div>

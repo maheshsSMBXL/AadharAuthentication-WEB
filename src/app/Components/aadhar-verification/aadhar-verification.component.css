@@ -133,3 +133,13 @@
 .progress-view{
     justify-content: space-between;
 }
+
+
+.adhaar-detail{
+    width: 50%;
+    height: 76%;
+}
+.adhaar-detail h3{
+    text-align: left;
+    padding-top: 20px;
+}

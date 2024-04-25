@@ -42,6 +42,7 @@ export class AadharVerificationComponent {
   aadharPhotoBase64:any;
   customerName:any;
   gender:any;
+  customerAadharDetails:any;
 
   async scanface()
   {
@@ -49,7 +50,8 @@ export class AadharVerificationComponent {
     await this.aadharService
           .submitOtp({aadharOTP : this.otp, transactionId : this.transactionId})
           .subscribe((res:any) => {
-            if (res) {   
+            if (res) {
+              this.customerAadharDetails = res.data.aadhaar_data;
               //this.aadharPhotoBase64 = res.data.aadhaar_data.photo_base64;
               this.aadharService.aadharBase64 = res.data.aadhaar_data.photo_base64; 
               this.customerName = res.data.aadhaar_data.name;   

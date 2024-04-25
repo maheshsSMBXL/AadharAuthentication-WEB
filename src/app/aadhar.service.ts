@@ -28,7 +28,7 @@ export class AadharService {
   faceMatch(data: any) {
     return this.http.post(
       environment.serviceUrl + '/ImageVerification',
-      data
+      data,{responseType:'text'}
     );
   }
 }
