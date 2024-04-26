@@ -56,7 +56,7 @@
     height: 34px;
 }
 .content-box h1{
-    padding-bottom: 50px;
+    /* padding-bottom: 50px; */
     font-weight: 800;
 }
 .font-adjuster{
@@ -135,11 +135,7 @@
 }
 
 
-.adhaar-detail{
-    width: 50%;
-    height: 76%;
-}
 .adhaar-detail h3{
     text-align: left;
-    padding-top: 20px;
+    /* padding-top: 20px; */
 }

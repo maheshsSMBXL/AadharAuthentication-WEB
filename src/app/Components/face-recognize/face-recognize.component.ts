@@ -24,7 +24,6 @@ export class FaceRecognizeComponent {
   }
 
   async initCamera() {
-    debugger;
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       this.video.srcObject = stream;
@@ -34,7 +33,6 @@ export class FaceRecognizeComponent {
   }
 
   async load(firstTime = false) {
-    debugger;
     //if (firstTime) await register(await connect());
     const stream = false
       ? await navigator.mediaDevices.getUserMedia({
@@ -55,6 +53,12 @@ export class FaceRecognizeComponent {
   }
 
   captureImage() {
+            
+    // this.aadharService.faceScan = false;    
+    // this.aadharService.aadharDetails = true;
+    // this.streamVideo = this.video.srcObject as MediaStream;
+    // this.streamVideo.getTracks().forEach(track => track.stop());
+
     const canvas = document.createElement('canvas');
     canvas.width = this.video.videoWidth;
     canvas.height = this.video.videoHeight;
@@ -67,17 +71,23 @@ export class FaceRecognizeComponent {
   async convertToBase64(imageDataURL: string) {
     const base64Image = imageDataURL.split('base64,')[1];
     console.log('Base64 Image:', base64Image);
-    // Here you can send the base64Image to your server or use it as needed
-    debugger;
+    // Here you can send the base64Image to your server or use it as needed    
     //this.aadharService.aadharDetails = true;
     await this.aadharService
           .faceMatch({scanBase64 : base64Image, aadhaarBase64 : this.aadharService.aadharBase64})
           .subscribe((res:any) => {
             if (res) {
-              debugger;    
-              this.aadharService.aadharDetails = true; 
-              this.streamVideo = this.video.srcObject as MediaStream;
-              this.streamVideo.getTracks().forEach(track => track.stop());          
+              if(res == 'The two faces belong to different people')
+              {
+                alert(res)               
+              }
+              else
+              {
+                this.aadharService.faceScan = false;
+                this.aadharService.aadharDetails = true; 
+                this.streamVideo = this.video.srcObject as MediaStream;
+                this.streamVideo.getTracks().forEach(track => track.stop());
+              }                                      
             }
           });
   }

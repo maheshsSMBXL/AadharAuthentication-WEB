@@ -1,7 +1,9 @@
 <div class="outer-res">
-    <!-- <div class="vedio-clip">
-        <iframe src="https://player.vimeo.com/video/840011485?autoplay=1&amp;loop=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;muted=1&amp;controls=0&amp;api=1&amp;player_id=vvvvimeoVideo-9892202" class="setvimeo" frameborder="0" allow="autoplay;" allowfullscreen="" ; data-ready="true"]></iframe>
-    </div> -->
+    <div class="vedio-clip">
+        <div>
+            <iframe [src]="url" class="setvimeo" frameborder="0" muted='true' allow="autoplay;" muted="1" allowfullscreen data-ready="true"></iframe>
+        </div>
+    </div>
 </div>
 <div class="glass-box">
     <div class="content-box">
@@ -18,7 +20,7 @@
         </div>         -->
         <form>            
             <div *ngIf="getOtp">                
-                <label class="font-adjuster" for="fname">Adhaar Number:</label>
+                <label class="font-adjuster" for="fname">Aadhar Number:</label>
                 <input class="adhaar-box" type="text" id="adhaarn" name="fname" placeholder="Enter Adhaar Number" [(ngModel)]="aadharNumber"><br><br>
                 <span class="display-otp">
                    <button class="primary-btn" type="button" id="mysubmit1" (click)="myfunc()">Get OTP</button>
@@ -31,7 +33,7 @@
                     <button class="primary-btn" type="button" id="mysubmit" (click)="scanface()">Submit</button>
                 </span>
             </div>
-            <div *ngIf="faceScan">
+            <div *ngIf="aadharService.faceScan">
                 <label>{{customerName}}</label>
                 <!-- <div>
                     <div class="progress-view"></div>
@@ -42,12 +44,17 @@
                 <app-face-recognize></app-face-recognize>
             </div>
             <div *ngIf="aadharService.aadharDetails">  
-                <div class="adhaar-detail">                    
-                    <h1>Adhaar Details</h1>
-                    <h3>Name: {{customerName}}</h3><br>
-                    <h3>Gender: {{gender}}</h3><br>
-                    <h3>DOB: {{customerAadharDetails.date_of_birth}}</h3><br>                    
-                    <h3>Address: {{customerAadharDetails.house}}, {{customerAadharDetails.landmark}}</h3><br>
+                <div class="adhaar-detail">  
+                    <!-- <h1>Adhaar Details</h1>
+                    <h3>Name: Mahesh Sindiri</h3>
+                    <h3>Gender: Male</h3>
+                    <h3>DOB: 1997-07-04</h3>                    
+                    <h3>Address: 2-21, nelavanka, Kaviti mandal</h3> -->
+                    <h1>Aadhar Details</h1>
+                    <h3>Name: {{customerName}}</h3>
+                    <h3>Gender: {{gender}}</h3>
+                    <h3>DOB: {{customerAadharDetails.date_of_birth}}</h3>                    
+                    <h3>Address: {{customerAadharDetails.house}}, {{customerAadharDetails.landmark}}</h3>
                 </div>              
                 <!-- <span class="get-otp" id="get-otp">
                     <label class="font-adjuster" for="lname">name: {{customerName}}</label>

@@ -10,6 +10,7 @@ export class AadharService {
 
   aadharBase64:any;
   aadharDetails:boolean = false;
+  faceScan:boolean = false;
 
   constructor(private http: HttpClient) { }
   
